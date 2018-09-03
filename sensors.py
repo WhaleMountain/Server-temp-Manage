@@ -7,7 +7,7 @@ import datetime
 def sensors():#コマンド実行, 実行結果を返す
     return subprocess.check_output("sensors").decode()
 
-def get_temp():#テキストからcpuの温度のみを取得
+def get_temp():#cpuの温度のみを取得
     res = sensors()
     temp = res.split()
     cnt = 0
@@ -33,7 +33,7 @@ def judge(temp): #管理者にメールを送信するかの判定
     elif temp >= 60.0:
         send = 1
         sub = "Attention "+time
-        s_msg = time+"\nAttention: The computer temperature is high.\nCPU_temp:"+str(temp)
+        s_msg = "Attention: The computer temperature is high.\nCPU_temp:"+str(temp)
 
     if send == 1:
         send_mail(sub,s_msg,warning)
